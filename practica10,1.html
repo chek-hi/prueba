@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<title>Practica 10.1</title>
+				<script type="text/javascript">
+		function envia(){ 
+		if (document.forma.nombre.value.length==0){ 
+      	 alert("Tiene que escribir su nombre") 
+      	 document.forma.nombre.focus() 
+      	 return false; 
+   	} 
+	if (document.forma.dire.value.length==0){ 
+      	 alert("Tiene que escribir su direccion") 
+      	 document.forma.dire.focus() 
+      	 return false; 
+   	} 
+	if (document.forma.confirma.value.length==0){ 
+      	 alert("Por favor confirma tu contraseña") 
+      	 document.forma.confirma.focus() 
+      	 return false; 
+   	}
+	if (document.forma.fecha.value.length==0){ 
+      	 alert("Tiene que escribir su fecha de nacimiento") 
+      	 document.forma.fecha.focus() 
+      	 return false; 
+   	}
+	if(document.forma.tele.value.search(/\d{3}\-\d{3}\-\d{4}/)==-1)
+   {
+      alert("El formato que ingreso es invalido, debe ser xxx-xxx-xxxx");
+      return false;
+   }
+   var fup = document.getElementById('foto');
+var fileName = fup.value;
+var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+if(ext == "gif" || ext == "GIF" || ext == "JPEG" || ext == "jpeg" || ext == "jpg" || ext == "JPG" || ext == "doc")
+{
+;
+} 
+else
+{
+alert("Ingresa una archivo de imagen ");
+fup.focus();
+return false;
+}
+   if (document.forma.sexo.checked == false &&
+	document.forma.sexo1.checked == false)
+		{
+		alert ('No seleccionaste un sexo');
+		return false;
+		}
+	if (document.forma.asunto.checked == false &&  document.forma.asunto1.checked == false && document.forma.asunto2.checked == false
+	&& document.forma.asunto3.checked == false && document.forma.asunto4.checked == false)
+		{
+		alert ('Por favor selecciona una razon por la que nos contactas');
+		return false;
+		}
+		else {
+		alert('Terminado');
+		return true;
+      }		
+} 
+		</script>
+	</head>
+		<body>
+		<form method="post" name="forma" id="forma" onsubmit="envia();">
+		<fieldset>
+			<legend>
+				Datos anteriormente llenados
+			</legend>
+			<label for="nick">Nick de usuario</label>
+			<input type="text" id="nick" name="nick" disabled="disabled" value="JORLP" />	
+			<br />
+			<label for="correo">Correo</label>
+			<input type="email" id="correo" name="correo" disabled="disabled" value="j.l.p@hotmail.com"/>
+			<br />
+		</fieldset>
+		<fieldset>
+				<legend>
+					    Datos personales
+				</legend>
+		<label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" />
+		<br />
+		<label for="dire">Direccion:</label>
+        <input type="text" id="dire" name="dire" />
+		<br />
+		<label for="tele">Telefono:</label>
+        <input type="tel" id="tele" name="tele" />
+		<br />
+		<label for="fecha">Fecha de nacimiento:</label>
+        <input type="date" id="fecha" name="fecha"/>
+		<br />
+		<label>Sexo:</label>
+		<br />
+		<input type="radio" name="sexo" value="Fem" />Femenino<br />
+		<input type="radio" name="sexo1" value="Mas" />Masculino
+		</fieldset>
+		<fieldset>
+		<legend>
+				Datos de la pagina
+		</legend>
+		 <label>Seleccione una de las siguientes opciones para hacernos saber por que nos contacta</label> <br />
+   <input type="checkbox" name="asunto" value="Negocios" /> Negocios<br />
+   <input type="checkbox" name="asunto1" value="Escuela" /> Escuela <br />
+   <input type="checkbox" name="asunto2" value="Empresa" /> Empresa <br />
+   <input type="checkbox" name="asunto3" value="Trabajo" /> Trabajo <br />
+   <input type="checkbox" name="asunto4" value="Familiar" /> Familiar <br />
+		</fieldset>
+		<fieldset>
+				<label for="foto">Foto personal</label>
+				<input id="foto" type="file" accept="image/*" />
+				<br />
+				<label for="confirma">Confirma Contrase&ntilde;a</label>
+				<input type="password" id="confirma" name="confirma" />
+		</fieldset>
+		<button type="submit">Enviar</button>			
+		<button type="reset">Limpiar</button>
+		</form>
+		</body>
+</html>
+		
