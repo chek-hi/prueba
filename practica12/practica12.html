@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Practica 12</title>
+        <meta charset="UTF-8" />
+		
+		<style type="text/css">
+        	#nom, #correo, #contra, #contra2{
+      			display:none;
+      			background-color:#ED2B2B;
+      			width:300px;
+      			height:20px;
+      			text-align:center;
+        	}
+        </style>
+		<script type="text/javascript" src="js/lib.min.js"></script>
+		<script type="text/javascript">
+			function valida(){
+				var band=true;
+				var reg = /^[0-9a-zA-Z_\-\.]+@[0-9a-zA-Z\-\.]+\.[a-zA-Z]{2,4}$/;
+				
+	        	if(registro.nombre.value.length==0){
+	        		document.getElementById('nom').style.display='block';
+	        		registro.nombre.focus();
+	        		band = false;
+	        	}
+				else
+				document.getElementById('nom').style.display='none';
+				if(!registro.mail.value.match(reg)){
+						document.getElementById('correo').style.display='block';
+						registro.mail.focus();
+						band  = false;
+				}
+				else
+				document.getElementById('correo').style.display='none';
+	        	
+				if(registro.contrasena.value.length==0)
+				{
+	        		document.getElementById('contra').style.display='block';
+	        		registro.confirma.focus();
+	        		band  = false;
+	        	}
+				else
+				document.getElementById('contra').style.display='none';
+					if(registro.contrasena.value != registro.confirma.value)
+					{
+						document.getElementById('contra2').style.display='block';
+						registro.confirma.focus();
+						band  = false;
+					}
+					else
+					document.getElementById('contra2').style.display='none';
+	        	if(band){
+				registro.md5con.value=md5(registro.contrasena.value);
+					registro.contrasena.value="";
+					registro.confirma.value="";
+				document.registro.enviar.click();
+				}
+			}
+			
+        </script>
+		
+		
+		
+    </head>
+
+    <body>
+        <h1>Practica 12</h1>
+<form name="registro" method="get" action="practica12.html">	
+<fieldset>
+<legend>Nuevo usuario</legend>
+
+<label for="nombre">Nombre</label>
+<input type="text" id="nombre" name="nombre" />	
+<div id="nom">
+<p>El campo nombre debe tener un valor.</p>
+</div>
+<br />
+
+<label for="mail">Correo</label>
+<input type="email" id="mail" name="mail" />
+<div id="correo">
+<p>Direccion de correo invalido</p>
+</div>
+<br />
+
+<label for="contrasena">Contraseña</label>
+<input type="password" id="contrasena" name="contrasena" />
+<div id="contra">
+<p>Escribe una contraseña </p>
+</div>
+<br />
+
+<label for="confirma">Confirma Contraseña</label>
+<input type="password" id="confirma" name="confirma" />
+<div id="contra2">
+<p> Las contraseñeas deben coincidir</p>
+</div>
+<br />
+<input type="hidden" id="md5con" name="md5con" />
+<button type="button" onclick="valida()">Registrar</button>
+<button type="submit" id="enviar" style="display: none;"></button>
+</fieldset>
+</form>	
+</body>
+</html>
