@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<title>Practica 11</title>
+		<link rel="stylesheet" type="text/css" media="all" href="css/jsDatePick_ltr.min.css" />
+		<script type="text/javascript" src="js/jsDatePick.min.1.3.js"></script>
+		<style type="text/css">
+        	#nom,#direccion,#concont,#date,#telefono,#pic, #opc, #sexo{
+      			display:none;
+      			background-color:#ED2B2B;
+      			width:300px;
+      			height:20px;
+      			text-align:center;
+        	}
+        </style>
+		<script type="text/javascript">
+		window.onload = function() {
+				new JsDatePick({
+					useMode : 2,
+					target : "fecha",
+					dateFormat : "%d/%m/%Y"
+				});
+			};
+		</script>
+		
+				<script type="text/javascript">
+		function envia(){ 
+				
+				var band=true;
+				
+		if (document.forma.nombre.value.length==0){ 
+      	 document.getElementById('nom').style.display='block';
+      	 document.forma.nombre.focus();
+      	 band= false;  
+   	} 
+	else
+				document.getElementById('nom').style.display='none';
+	if (document.forma.dire.value.length==0){ 
+      	 document.getElementById('direccion').style.display='block';
+      	 document.forma.dire.focus();
+      	 band= false; 
+   	} 
+	else
+				document.getElementById('direccion').style.display='none';
+	if (document.forma.confirma.value.length==0){ 
+      	 document.getElementById('concont').style.display='block';
+      	 document.forma.confirma.focus();
+      	 band= false; 
+   	}
+	else
+				document.getElementById('concont').style.display='none';
+	if (document.forma.fecha.value.length==0){ 
+      	 document.getElementById('date').style.display='block';
+      	 document.forma.fecha.focus();
+      	 band= false;  
+   	}
+	else
+				document.getElementById('date').style.display='none';
+	if(document.forma.tele.value.search(/\d{3}\-\d{3}\-\d{4}/)==-1)
+   {
+      document.getElementById('telefono').style.display='block';
+      band= false; 
+   }
+   else
+				document.getElementById('telefono').style.display='none';
+   var fup = document.getElementById('foto');
+var fileName = fup.value;
+var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+document.getElementById('pic').style.display='none';
+if(ext == "gif" || ext == "GIF" || ext == "JPEG" || ext == "jpeg" || ext == "jpg" || ext == "JPG" || ext == "png")
+{
+;
+} 
+else
+{
+document.getElementById('pic').style.display='block';
+fup.focus();
+band= false; 
+}
+   if (document.forma.sexo.checked == false &&
+	document.forma.sexo1.checked == false)
+		{
+		document.getElementById('sexo').style.display='block';
+		band= false; 
+		}
+		else
+				document.getElementById('sexo').style.display='none';
+	if (document.forma.asunto.checked == false &&  document.forma.asunto1.checked == false && document.forma.asunto2.checked == false
+	&& document.forma.asunto3.checked == false && document.forma.asunto4.checked == false)
+		{
+		document.getElementById('opc').style.display='block';
+		band= false; 
+		}
+		else {
+				document.getElementById('opc').style.display='none';
+      }		
+	  if(band){
+	  document.forma.enviar.click();
+	  }
+} 
+		</script>
+	</head>
+		<body>
+		<form method="get" name="forma" id="forma" action="practica11.html">
+		<fieldset>
+			<legend>
+				Datos anteriormente llenados
+			</legend>
+			<label for="nick">Nick de usuario</label>
+			<input type="text" id="nick" name="nick" disabled="disabled" value="JORLP" />	
+			<br />
+			<label for="correo">Correo</label>
+			<input type="email" id="correo" name="correo" disabled="disabled" value="j.l.p@hotmail.com"/>
+			<br />
+		</fieldset>
+		<fieldset>
+				<legend>
+					    Datos personales
+				</legend>
+		<label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" />
+		<div id="nom">
+			<p>El campo nombre debe tener un valor.</p>
+		</div>
+		<br />
+		<label for="dire">Direccion:</label>
+        <input type="text" id="dire" name="dire" />
+		<div id="direccion">
+			<p>El campo direccion debe tener un valor.</p>
+			</div>
+		<br />
+		<label for="tele">Telefono:</label>
+        <input type="tel" id="tele" name="tele" />
+		<div id="telefono">
+			<p>El formato que ingreso es invalido, debe ser xxx-xxx-xxxx</p>
+			</div>
+		<br />
+		<label for="fecha">Fecha de nacimiento:</label>
+        <input type="text" id="fecha" name="fecha"/>
+		<div id="date">
+			<p>Por favor ponga su fecha de nacimiento</p>
+			</div>
+		<br />
+		<label>Sexo:</label>
+		<br />
+		<input type="radio" name="sexo" value="Fem" />Femenino<br />
+		<input type="radio" name="sexo1" value="Mas" />Masculino
+		<div id="sexo">
+			<p>Seleccione al menos una opcion.</p>
+			</div>
+		</fieldset>
+		
+		<fieldset>
+		<legend>
+				Datos de la pagina
+		</legend>
+		 <label>Seleccione una de las siguientes opciones para hacernos saber por que nos contacta</label> <br />
+   <input type="checkbox" name="asunto" value="Negocios" /> Negocios<br />
+   <input type="checkbox" name="asunto1" value="Escuela" /> Escuela <br />
+   <input type="checkbox" name="asunto2" value="Empresa" /> Empresa <br />
+   <input type="checkbox" name="asunto3" value="Trabajo" /> Trabajo <br />
+   <input type="checkbox" name="asunto4" value="Familiar" /> Familiar <br />
+   <div id="opc">
+			<p>Seleccione al menos una opcion</p>
+			</div>
+		</fieldset>
+		<fieldset>
+				<label for="foto">Foto personal</label>
+				<input id="foto" type="file" accept="image/*" />
+				<div id="pic">
+			<p>Por favor suba una imagen</p>
+			</div>
+				<br />
+				<label for="confirma">Confirma Contrase&ntilde;a</label>
+				<input type="password" id="confirma" name="confirma" />
+				<div id="concont">
+			<p>Confirme su contraseña</p>
+			</div>
+		</fieldset>
+		<button type="button" onclick="envia()">Enviar</button>
+<button type="submit" id="enviar" style="display: none;"></button>			
+		<button type="reset">Limpiar</button>
+		</form>
+		</body>
+</html>
+		
