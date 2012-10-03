@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Practica 13</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        	//crear un titulo
+			var titulo =document.createElement('h1');
+			//texto del titulo
+			var texto= document.createTextNode('Primer titulo');
+			//unir titulo con su texto
+			titulo.appendChild(texto);
+			//agregar texto a la pagina
+			document.body.appendChild(titulo);
+			//Segundo titulo
+			var titulo2= document.createElement('h1');
+			var texto2= document.createTextNode('segundo titulo');
+			titulo2.appendChild(texto2);
+			var tituloss =document.getElementsByTagName('h1');
+			document.body.insertBefore(titulo2,tituloss[0]);
+			
+        </script>
+    </body>
+</html>
